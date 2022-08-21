@@ -10,7 +10,7 @@
                     <h2 class="fw-bold mb-0">Sign in</h2>
                 </div>
                 <div class="modal-body p-5 pt-0">
-                    <form action='{{ route('login-form') }}' method="POST">
+                    <form action='{{ route('login') }}' method="POST">
                         @csrf
                         <div class="form-floating mb-3">
                             <input name="email" type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">

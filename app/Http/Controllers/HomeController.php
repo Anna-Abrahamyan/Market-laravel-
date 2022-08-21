@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductStoreRequest;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\User_Product;
@@ -12,14 +13,14 @@ use Throwable;
 
 class HomeController extends Controller
 {
-    public function show(): View
+    public function index(): View
     {
         $products = Product::query()->get();
 
         return view('home', ['products' => $products]);
     }
 
-    public function addProductToCart(Request $request): Response | bool
+    public function store(ProductStoreRequest $request): Response | bool
     {
         $auth_token = $request->cookie('auth_token');
         $productId = $request->json('id');

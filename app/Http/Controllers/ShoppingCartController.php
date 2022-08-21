@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductsRequest;
+use App\Http\Requests\ProductsIndexRequest;
 use App\Models\User;
 use Illuminate\View\View;
 use Throwable;
 
 class ShoppingCartController extends Controller
 {
-    public function getUserProducts(ProductsRequest $request): View | bool {
+    public function index(ProductsIndexRequest $request): View | bool {
 
         $auth_token = $request->cookie('auth_token');
         try{

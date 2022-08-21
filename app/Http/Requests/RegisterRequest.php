@@ -9,6 +9,7 @@ class RegisterRequest extends FormRequest
     const USER_NAME = 'name';
     const USER_EMAIL = 'email';
     const USER_PASSWORD = 'password';
+    const USER_TOKEN = 'authToken';
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -28,8 +29,22 @@ class RegisterRequest extends FormRequest
     {
         return [
             self::USER_NAME  => 'required',
-            self::USER_EMAIL => 'required|email',
+            self::USER_EMAIL => 'required|email|unique:users',
             self::USER_PASSWORD => 'required|min:8|max:20'
         ];
+    }
+
+    public function getUserName():string {
+        return $this->get(self::USER_NAME);
+    }
+
+    public function getUserEmail(): string
+    {
+        return $this->get(self::USER_EMAIL);
+    }
+
+    public function getUserPassword(): string
+    {
+        return $this->get(self::USER_PASSWORD);
     }
 }

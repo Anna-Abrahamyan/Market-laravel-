@@ -13,7 +13,7 @@ class Auth
     {
         $value = $request->cookie(self::AUTH);
         if (!$value) {
-            return redirect()->route('login');
+            return redirect()->route('showLogin');
         }
         return $next($request);
     }

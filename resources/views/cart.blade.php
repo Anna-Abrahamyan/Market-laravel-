@@ -3,7 +3,7 @@
 @section('title')Shopping cart @endsection
 @section('content')
     <div class="logout">
-        <a href={{route('logout-form')}}>Log out</a>
+        <a href={{route('logout')}}>Log out</a>
     </div>
     <div class="products">
         @foreach($userProducts as $userProduct)

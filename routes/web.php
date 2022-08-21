@@ -1,25 +1,26 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController\RegisterController;
-use App\Http\Controllers\AuthController\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\HomeController;
 
-Route::get('/', [HomeController::class, 'show'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-Route::post('/', [HomeController::class, 'addProductToCart'])->middleware('auth');
+Route::post('/', [HomeController::class, 'store'])->middleware('auth')->name('home.store');
 
-Route::get('/register', [RegisterController::class, 'show']);
+Route::get('/register', [AuthController::class, 'showRegister'])->name('showRegister');
 
-Route::get('/login', [LoginController::class, 'show'])->name('login');
+Route::get('/login', [AuthController::class, 'showLogin'])->name('showLogin');
 
-Route::post('/register', [RegisterController::class, 'register'])->name('register-form');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-Route::post('/login', [LoginController::class, 'login'])->name('login-form');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout-form');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/cart', [ShoppingCartController::class, 'getUserProducts'])->middleware('auth')->name('shopping-cart');
+Route::get('/cart', [ShoppingCartController::class, 'index'])->middleware('auth')->name('cart.index');
 
 
